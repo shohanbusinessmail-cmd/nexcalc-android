@@ -110,7 +110,7 @@ class Rational private constructor(val numerator: BigInteger, val denominator: B
             val whole = parts[0].toBigIntegerOrNull() ?: throw MathException.invalid("'${parts[0]}' is not an integer.")
             val fraction = parse(parts[1])
             if (fraction.abs() >= Rational.of(1)) throw MathException.invalid("The fractional part must be less than 1.")
-            return of(whole).plus(if (whole.signum() < 0) fraction.negate() else fraction)
+            return of(whole, BigInteger.ONE).plus(if (whole.signum() < 0) fraction.negate() else fraction)
         }
 
         private fun String.toBigIntegerOrNull(): BigInteger? = try {
