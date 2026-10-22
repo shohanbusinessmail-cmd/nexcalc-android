@@ -286,7 +286,7 @@ private fun CalculatorDisplay(
             }
             if (error != null && error.position != null) {
                 Text(
-                    "At character ${error.position + 1}",
+                    stringResource(R.string.error_position, error.position + 1),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

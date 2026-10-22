@@ -327,4 +327,6 @@
     <string name="cd_history">History</string>
     <string name="cd_favorite">Toggle favorite</string>
     <string name="cd_clear">Clear</string>
+    <string name="error_position">At character %1$d</string>
+    <string name="resistor_tolerance_unspecified">unspecified</string>
 </resources>

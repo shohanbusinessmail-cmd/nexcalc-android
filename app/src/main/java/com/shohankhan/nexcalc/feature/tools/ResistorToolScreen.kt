@@ -102,12 +102,14 @@ fun ResistorToolScreen(onBack: () -> Unit) {
                         )
                         LabeledValue(
                             stringResource(R.string.resistor_tolerance),
-                            result.tolerancePercent?.let { "±${NumberFormatter.format(it, NumberFormatOptions(decimalPrecision = 3, useGrouping = false))}%" } ?: "unspecified"
+                            result.tolerancePercent?.let { "±${NumberFormatter.format(it, NumberFormatOptions(decimalPrecision = 3, useGrouping = false))}%" } ?: stringResource(R.string.resistor_tolerance_unspecified)
                         )
-                        if (result.minimumOhms != null && result.maximumOhms != null) {
+                        val minimum = result.minimumOhms
+                        val maximum = result.maximumOhms
+                        if (minimum != null && maximum != null) {
                             LabeledValue(
                                 stringResource(R.string.resistor_range),
-                                "${ResistorCalculator.formatResistance(result.minimumOhms)} – ${ResistorCalculator.formatResistance(result.maximumOhms)}"
+                                "${ResistorCalculator.formatResistance(minimum)} – ${ResistorCalculator.formatResistance(maximum)}"
                             )
                         }
                         result.temperatureCoefficientPpm?.let {

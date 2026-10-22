@@ -342,14 +342,14 @@ fun NumberInputField(
 }
 
 @Composable
-fun PrimaryAction(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
+fun PrimaryAction(text: String, modifier: Modifier = Modifier, enabled: Boolean = true, onClick: () -> Unit) {
     Button(onClick = onClick, modifier = modifier.heightIn(min = 48.dp), enabled = enabled) {
         Text(text)
     }
 }
 
 @Composable
-fun SecondaryAction(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun SecondaryAction(text: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     TextButton(onClick = onClick, modifier = modifier.heightIn(min = 48.dp)) {
         Text(text)
     }
@@ -411,7 +411,7 @@ fun DividerSpacer(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun IconAction(icon: ImageVector, contentDescription: String, onClick: () -> Unit, enabled: Boolean = true) {
+fun IconAction(icon: ImageVector, contentDescription: String, enabled: Boolean = true, onClick: () -> Unit) {
     IconButton(onClick = onClick, enabled = enabled) {
         Icon(icon, contentDescription = contentDescription, modifier = Modifier.size(22.dp))
     }
@@ -439,7 +439,7 @@ fun LabeledContent(label: String, content: @Composable RowScope.() -> Unit) {
 
 /** Compact expression chip for function and constant strips. */
 @Composable
-fun ExpressionChip(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun ExpressionChip(label: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Surface(
         modifier = modifier,
         shape = RoundedCornerShape(50),
