@@ -24,7 +24,7 @@ jobs:
       - name: Run engine tests
         run: |
           set -o pipefail
-          ./gradlew :core:math:test --stacktrace --no-daemon --console=plain 2>&1 | tee build.log
+          ./gradlew :core:math:test :app:assembleDebug --continue --stacktrace --no-daemon --console=plain 2>&1 | tee build.log
       - name: Summarise failing tests
         if: failure()
         run: |
