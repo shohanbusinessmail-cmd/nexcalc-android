@@ -172,8 +172,8 @@ internal object QuickFractionTools {
         ToolSupport.result(
             "LCD = $lcd",
             "Least common denominator" to lcd.toString(),
-            "First fraction" to first.toString(),
-            "Second fraction" to second.toString()
+            "First fraction" to "${first.numerator}/${first.denominator}",
+            "Second fraction" to "${second.numerator}/${second.denominator}"
         )
     }
 
@@ -191,8 +191,32 @@ internal object QuickFractionTools {
         ToolSupport.result("x = $x", "x" to x.toString(), "x (mixed)" to x.mixedString(), "x (decimal)" to ToolSupport.fmt(x.toDouble()))
     }
 
+    val fractionOfNumber = tool(
+        "fraction-of-number", "Fraction of a number",
+        "Multiplies a fraction by a value exactly and shows the mixed-number result.",
+        listOf(input("fraction", "Fraction (a/b)", "3/4"), input("number", "Number", "200")),
+        listOf(
+            ToolTest(mapOf("fraction" to "3/4", "number" to "200"), mapOf("Result" to "150")),
+            ToolTest(mapOf("fraction" to "2/3", "number" to "10"), mapOf("Result" to "6 2/3"))
+        )
+    ) { values ->
+        val fraction = ToolSupport.rational(values, "fraction")
+        val rawNumber = ToolSupport.text(values, "number").replace(" ", "")
+        val number = try {
+            Rational.parse(rawNumber)
+        } catch (error: MathException) {
+            throw MathException.invalid("'$rawNumber' is not a valid number.")
+        }
+        val product = fraction.times(number)
+        ToolSupport.result(
+            "${fraction} × $number = ${product.mixedString()}",
+            "Result" to product.mixedString(),
+            "Decimal" to ToolSupport.fmt(product.toDouble())
+        )
+    }
+
     val all: List<QuickTool> = listOf(
         simplify, add, subtract, multiply, divide, improperToMixed, mixedToImproper, toDecimal, compare,
-        commonDenominator, missingTerm
+        commonDenominator, missingTerm, fractionOfNumber
     )
 }

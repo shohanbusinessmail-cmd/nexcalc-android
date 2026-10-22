@@ -67,7 +67,7 @@ class ParserTest {
         assertEquals(7.0, value("((((3)))) + 4"))
         assertEquals(-8.0, value("-(3 + 5)"))
         assertEquals(5.0, value("+5"))
-        assertEquals(-3.0, value("-(-3)"))
+        assertEquals(3.0, value("-(-3)"))
     }
 
     @Test

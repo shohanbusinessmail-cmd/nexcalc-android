@@ -86,9 +86,10 @@ class QuickToolRegistryTest {
     fun `sequence ambiguity is never hidden`() {
         val next = QuickToolRegistry.find("sequence-next-terms")!!
         val result = next.compute(mapOf("t1" to "2", "t2" to "6", "t3" to "18"))
-        assertTrue(result.warnings.isNotEmpty())
+        assertTrue(result.warnings.isNotEmpty(), "a fitted rule must be labelled as one interpretation")
+        assertEquals("54, 162, 486", result.outputs.first { it.label == "Next terms" }.value)
         assertEquals(MathErrorCode.DOMAIN, assertFailsWith<MathException> {
-            next.compute(mapOf("t1" to "1", "t2" to "2", "t3" to "4"))
+            next.compute(mapOf("t1" to "2", "t2" to "3", "t3" to "5"))
         }.code)
     }
 

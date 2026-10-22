@@ -96,7 +96,8 @@ class Rational private constructor(val numerator: BigInteger, val denominator: B
                 of(n, d)
             } else {
                 val decimal = trimmed.toBigDecimalOrNull() ?: throw MathException.invalid("'$trimmed' is not a number.")
-                of(decimal.unscaledValue(), BigInteger.TEN.pow(decimal.scale()))
+                if (decimal.scale() < 0) of(decimal.unscaledValue().multiply(BigInteger.TEN.pow(-decimal.scale())), BigInteger.ONE)
+                else of(decimal.unscaledValue(), BigInteger.TEN.pow(decimal.scale()))
             }
         }
 
@@ -110,7 +111,7 @@ class Rational private constructor(val numerator: BigInteger, val denominator: B
             val whole = parts[0].toBigIntegerOrNull() ?: throw MathException.invalid("'${parts[0]}' is not an integer.")
             val fraction = parse(parts[1])
             if (fraction.abs() >= Rational.of(1)) throw MathException.invalid("The fractional part must be less than 1.")
-            return of(whole, BigInteger.ONE).plus(if (whole.signum() < 0) fraction.negate() else fraction)
+            return Rational(whole, BigInteger.ONE).plus(if (whole.signum() < 0) fraction.negate() else fraction)
         }
 
         private fun String.toBigIntegerOrNull(): BigInteger? = try {

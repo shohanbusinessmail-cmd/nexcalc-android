@@ -47,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -193,7 +194,8 @@ private fun BottomBar(navController: NavController, destination: NavDestination?
                 selected = item.selected(destination),
                 onClick = { item.navigate(navController) },
                 icon = { Icon(item.icon, contentDescription = null) },
-                label = { Text(stringResource(item.labelRes), textAlign = TextAlign.Center) }
+                label = { Text(stringResource(item.labelRes), textAlign = TextAlign.Center) },
+                modifier = Modifier.testTag("bottom_${item.labelRes}")
             )
         }
     }

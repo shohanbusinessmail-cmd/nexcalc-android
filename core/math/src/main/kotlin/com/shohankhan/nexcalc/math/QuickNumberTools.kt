@@ -308,8 +308,30 @@ internal object QuickNumberTools {
         )
     }
 
+    val modularExponentiation = tool(
+        "modular-exponentiation", "Modular exponentiation",
+        "Computes base^exponent mod modulus exactly with arbitrary-precision integers.",
+        listOf(input("base", "Base"), input("exponent", "Exponent"), input("modulus", "Modulus")),
+        listOf(
+            ToolTest(mapOf("base" to "2", "exponent" to "10", "modulus" to "1000"), mapOf("Result" to "24")),
+            ToolTest(mapOf("base" to "3", "exponent" to "100", "modulus" to "7"), mapOf("Result" to "4"))
+        )
+    ) { values ->
+        val base = ToolSupport.big(values, "base", TWO_LIMIT)
+        val exponent = ToolSupport.big(values, "exponent", TWO_LIMIT)
+        val modulus = ToolSupport.big(values, "modulus", TWO_LIMIT)
+        if (exponent.signum() < 0) throw MathException.invalid("The exponent must be zero or greater.")
+        if (modulus <= BigInteger.ONE) throw MathException.invalid("The modulus must be greater than 1.")
+        val result = base.mod(modulus).modPow(exponent, modulus)
+        ToolSupport.result(
+            "$result",
+            "Result" to result.toString(),
+            steps = listOf("Reduce the base modulo $modulus, then use binary exponentiation.")
+        )
+    }
+
     val all: List<QuickTool> = listOf(
         gcdLcm, primeCheck, primeFactorization, factors, divisorsOfGcd, commonMultiples, divisibility,
-        coprime, modularArithmetic, integerRoots, digits, trailingZeros, primesUpTo
+        coprime, modularArithmetic, integerRoots, digits, trailingZeros, primesUpTo, modularExponentiation
     )
 }

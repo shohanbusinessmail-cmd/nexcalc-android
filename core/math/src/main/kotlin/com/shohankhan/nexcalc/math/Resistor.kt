@@ -51,7 +51,7 @@ object ResistorCalculator {
         if (bands.size !in supportedBandCounts) {
             throw MathException.invalid("Choose 4, 5 or 6 bands.")
         }
-        val digitCount = bands.size - 2
+        val digitCount = if (bands.size == 6) 3 else bands.size - 2
         val digitBands = bands.take(digitCount)
         digitBands.forEach { band ->
             if (band.digit == null) {

@@ -1,19 +1,16 @@
-name: Core Math CI
-
+name: Engine and app build
 on:
   push:
     branches: [ "arena/aa8fb12a-nexcalc-android" ]
   pull_request:
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
-  math:
-    name: Engine build and tests
+  build:
+    name: Engine tests and app build
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -21,23 +18,39 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v3
-      - name: Run engine tests
+      - name: Build and test
         run: |
           set -o pipefail
-          ./gradlew :core:math:test :app:assembleDebug --continue --stacktrace --no-daemon --console=plain 2>&1 | tee build.log
-      - name: Summarise failing tests
+          ./gradlew :core:math:test :app:assembleDebug :app:testDebugUnitTest --continue --stacktrace --no-daemon --console=plain 2>&1 | tee build.log
+      - name: Summarise failures
         if: failure()
         run: |
           {
+            echo "===== COMPILE ERRORS ====="
+            grep -n "^e: " build.log | head -120 || true
             echo "===== TEST FAILURES ====="
-            grep -h -A8 "<failure" core/math/build/test-results/test/*.xml 2>/dev/null | head -400 || true
+            python3 - <<'PY'
+            import glob, re, xml.etree.ElementTree as ET
+            for path in sorted(glob.glob('**/build/test-results/**/*.xml', recursive=True)):
+                try:
+                    root = ET.parse(path).getroot()
+                except Exception as exc:
+                    continue
+                for case in root.iter('testcase'):
+                    for node in list(case.findall('failure')) + list(case.findall('error')):
+                        message = (node.get('message') or '').strip()
+                        print(f"{case.get('classname')} > {case.get('name')}: {message[:900]}")
+            PY
           } | tee -a build.log
-      - name: Upload engine test reports
+      - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: engine-test-reports
-          path: core/math/build/reports/tests/test
+          name: build-reports
+          path: |
+            core/math/build/reports/tests/test
+            app/build/reports/tests/testDebugUnitTest
+            app/build/reports/lint-results-debug.html
           if-no-files-found: warn
       - name: Publish run log to ci-logs branch
         if: always()

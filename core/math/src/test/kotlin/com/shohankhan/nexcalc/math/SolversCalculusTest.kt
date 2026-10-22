@@ -64,7 +64,7 @@ class SolversTest {
     @Test
     fun `numeric derivatives approximate analytic derivatives`() {
         assertEquals(1.0, Solvers.derivative({ x -> Math.sin(x) }, 0.0), 1e-7)
-        assertEquals(6.0, Solvers.derivative({ x -> x * x * x }, 2.0), 1e-5)
+        assertEquals(12.0, Solvers.derivative({ x -> x * x * x }, 2.0), 1e-5)
         assertEquals(2.0, Solvers.secondDerivative({ x -> x * x }, 3.0), 1e-4)
     }
 

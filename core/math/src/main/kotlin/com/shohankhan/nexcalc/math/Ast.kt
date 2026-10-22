@@ -63,7 +63,7 @@ object ExprPrinter {
                 val left = render(expr.left, precedence(expr))
                 // Exponentiation is right-associative, so its right operand may share precedence.
                 val right = render(expr.right, precedence(expr) + if (expr.op == "^") 0 else 1)
-                "$left ${expr.op} $right"
+                if (expr.op == "^") "$left^$right" else "$left ${expr.op} $right"
             }
             is Expr.Call -> expr.name + "(" + expr.args.joinToString(", ") { render(it, 0) } + ")"
         }

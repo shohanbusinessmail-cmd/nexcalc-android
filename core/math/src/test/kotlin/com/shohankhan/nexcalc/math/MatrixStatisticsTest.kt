@@ -88,7 +88,7 @@ class MatrixTest {
     @Test
     fun `vector operations`() {
         assertEquals(5.0, VectorMath.magnitude(listOf(3.0, 4.0)), 1e-12)
-        assertEquals(11.0, VectorMath.dot(listOf(1.0, 2.0, 3.0), listOf(1.0, 2.0, 3.0)), 1e-12)
+        assertEquals(14.0, VectorMath.dot(listOf(1.0, 2.0, 3.0), listOf(1.0, 2.0, 3.0)), 1e-12)
         assertEquals(listOf(-3.0, 6.0, -3.0), VectorMath.cross(listOf(1.0, 2.0, 3.0), listOf(4.0, 5.0, 6.0)))
         assertEquals(listOf(0.6, 0.8), VectorMath.normalize(listOf(3.0, 4.0)))
         assertEquals(90.0, VectorMath.angleBetween(listOf(1.0, 0.0), listOf(0.0, 1.0)), 1e-9)
@@ -169,7 +169,7 @@ class StatisticsTest {
         assertEquals(1.0, regression.rSquared, 1e-12)
         assertEquals(4, regression.count)
         assertEquals(0.0, regression.slopeStandardError!!, 1e-12)
-        assertEquals(1.0, Statistics.correlation(listOf(1.0, 2.0, 3.0), listOf(3.0, 2.0, 1.0)), 1e-12)
+        assertEquals(-1.0, Statistics.correlation(listOf(1.0, 2.0, 3.0), listOf(3.0, 2.0, 1.0)), 1e-12)
         assertEquals(MathErrorCode.DOMAIN, assertFailsWith<MathException> {
             Statistics.correlation(listOf(1.0, 1.0, 1.0), listOf(1.0, 2.0, 3.0))
         }.code)

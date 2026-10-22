@@ -152,6 +152,7 @@ class FormulaCatalogueTest {
             assertTrue(FormulaRegistry.subcategories(category).isNotEmpty(), "no subcategories for ${category.name}")
             assertTrue(FormulaRegistry.byCategory(category).isNotEmpty())
         }
-        assertFailsWith<IllegalArgumentException> { FormulaRegistry.byCategory(FormulaCategory.GEOMETRY).first().compute(emptyMap()) }
+        val first = FormulaRegistry.byCategory(FormulaCategory.GEOMETRY).first()
+        assertTrue(FormulaEngine.calculate(first, emptyMap()) is FormulaEvaluation.Invalid)
     }
 }

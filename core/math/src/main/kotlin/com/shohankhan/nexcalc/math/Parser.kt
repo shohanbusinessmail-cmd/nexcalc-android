@@ -14,9 +14,23 @@ import java.math.BigDecimal
  * 6. Multiplication `*` and division `/` — left associative.
  * 7. Addition `+` and subtraction `-` — left associative.
  */
+private const val MAX_NESTING = 100
+
 internal class Parser(private val tokens: List<Token>) {
 
     private var position = 0
+
+    private var nesting = 0
+
+    private fun <T> nested(block: () -> T): T {
+        nesting++
+        if (nesting > MAX_NESTING) throw MathException.limit("The expression is nested too deeply (limit $MAX_NESTING levels).")
+        try {
+            return block()
+        } finally {
+            nesting--
+        }
+    }
 
     fun parse(): Expr {
         if (peek().kind == TokenKind.END) throw MathException.syntax("Enter an expression to evaluate.", 0)
@@ -64,7 +78,7 @@ internal class Parser(private val tokens: List<Token>) {
         val token = peek()
         if (token.kind == TokenKind.OPERATOR && (token.text == "-" || token.text == "+")) {
             advance()
-            val operand = parseUnary()
+            val operand = nested { parseUnary() }
             return if (token.text == "-") Expr.Unary("-", operand) else Expr.Unary("+", operand)
         }
         return parsePower()
@@ -136,7 +150,7 @@ internal class Parser(private val tokens: List<Token>) {
             }
             TokenKind.LEFT_PAREN -> {
                 advance()
-                val inner = parseAdditive()
+                val inner = nested { parseAdditive() }
                 val closing = peek()
                 if (closing.kind != TokenKind.RIGHT_PAREN) {
                     throw MathException.syntax("Missing closing parenthesis.", closing.position)

@@ -390,9 +390,9 @@ object UnitRegistry {
             units = listOf(
                 linear("kmpl", "Kilometre per litre", "km/L", 1.0),
                 affine("l100km", "Litres per 100 km", "L/100km", { 100.0 / it }, { 100.0 / it }, "Lower values are more efficient; zero consumption is undefined."),
-                linear("mpg_us", "Miles per US gallon", "mpg (US)", MILE / US_GALLON),
-                linear("mpg_uk", "Miles per Imperial gallon", "mpg (Imp)", MILE / IMPERIAL_GALLON),
-                linear("mipl", "Miles per litre", "mi/L", MILE)
+                linear("mpg_us", "Miles per US gallon", "mpg (US)", MILE / US_GALLON / 1000.0),
+                linear("mpg_uk", "Miles per Imperial gallon", "mpg (Imp)", MILE / IMPERIAL_GALLON / 1000.0),
+                linear("mipl", "Miles per litre", "mi/L", MILE / 1000.0)
             )
         ),
         UnitCategory(

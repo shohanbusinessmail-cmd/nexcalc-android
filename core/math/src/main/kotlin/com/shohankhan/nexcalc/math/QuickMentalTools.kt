@@ -1,5 +1,7 @@
 package com.shohankhan.nexcalc.math
 
+import java.math.BigInteger
+
 import java.math.RoundingMode
 
 /**
@@ -216,6 +218,28 @@ internal object QuickMentalTools {
             "Estimate" to ToolSupport.fmt(roundedA * roundedB),
             "Exact product" to ToolSupport.fmt(a * b),
             "Rounded factors" to "${ToolSupport.fmt(roundedA)} × ${ToolSupport.fmt(roundedB)}"
+        )
+    }
+
+    val squareEndingFive = tool(
+        "square-ending-five", "Square a number ending in 5",
+        "Fast method: n5 squared equals n(n+1) followed by 25.",
+        listOf(input("number", "Number ending in 5", "35")),
+        listOf(
+            ToolTest(mapOf("number" to "35"), mapOf("Square" to "1225")),
+            ToolTest(mapOf("number" to "5"), mapOf("Square" to "25")),
+            ToolTest(mapOf("number" to "105"), mapOf("Square" to "11025"))
+        )
+    ) { values ->
+        val number = ToolSupport.long(values, "number")
+        if (number < 5 || number % 10 != 5L) throw MathException.invalid("Enter a positive whole number ending in 5.")
+        if (number > 100_000_000L) throw MathException.limit("Values are limited to 100 000 000.")
+        val n = BigInteger.valueOf(number / 10)
+        val square = n.multiply(n.add(BigInteger.ONE)).multiply(BigInteger.valueOf(100)).add(BigInteger.valueOf(25))
+        ToolSupport.result(
+            "$number² = $square",
+            "Square" to square.toString(),
+            steps = listOf("n = ${number / 10}; n(n + 1) = ${n.multiply(n.add(BigInteger.ONE))}; append 25")
         )
     }
 

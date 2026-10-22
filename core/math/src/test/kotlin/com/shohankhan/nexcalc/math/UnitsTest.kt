@@ -54,9 +54,9 @@ class UnitsTest {
             for (from in category.units) {
                 for (to in category.units) {
                     for (value in samples) {
-                        val converted = from.toBase(value)
+                        val converted = to.fromBase(from.toBase(value))
                         if (!converted.isFinite()) continue
-                        val back = to.fromBase(converted)
+                        val back = from.fromBase(to.toBase(converted))
                         if (!back.isFinite()) continue
                         val tolerance = 1e-9 * maxOf(1.0, abs(value))
                         assertTrue(
