@@ -56,7 +56,7 @@ class FormulaCatalogueTest {
                 }
             }
         }
-        assertTrue(problems.joinToString("\n"), problems.isEmpty())
+        assertTrue(problems.isEmpty(), problems.joinToString("\n"))
     }
 
     @Test
@@ -83,7 +83,7 @@ class FormulaCatalogueTest {
                 }
             }
         }
-        assertTrue(failures.joinToString("\n"), failures.isEmpty())
+        assertTrue(failures.isEmpty(), failures.joinToString("\n"))
     }
 
     @Test

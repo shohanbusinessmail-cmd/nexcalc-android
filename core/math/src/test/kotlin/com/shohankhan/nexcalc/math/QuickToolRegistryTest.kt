@@ -46,7 +46,7 @@ class QuickToolRegistryTest {
                 }
             }
         }
-        assertTrue(failures.joinToString("\n"), failures.isEmpty())
+        assertTrue(failures.isEmpty(), failures.joinToString("\n"))
     }
 
     @Test

@@ -268,7 +268,7 @@ class EvaluatorTest {
                 failures += "${info.name}: ${info.example} failed with ${error.message}"
             }
         }
-        assertTrue(failures.joinToString("\n"), failures.isEmpty())
+        assertTrue(failures.isEmpty(), failures.joinToString("\n"))
     }
 }
 
