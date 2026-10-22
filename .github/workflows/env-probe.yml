@@ -1,0 +1,24 @@
+name: Env Probe
+on:
+  push:
+    branches: [ "arena/aa8fb12a-nexcalc-android" ]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe environment
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME"
+          java -version
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls "$ANDROID_HOME" | head -20
+          ls "$ANDROID_HOME/platforms" 2>/dev/null || true
+          ls "$ANDROID_HOME/build-tools" 2>/dev/null || true
+          ls "$ANDROID_HOME/cmdline-tools" 2>/dev/null || true
+          echo "--- gradle cache ---"
+          ls ~/.gradle 2>/dev/null || echo "no gradle home"
+          echo "runner done"
