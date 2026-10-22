@@ -53,6 +53,9 @@ object UnitRegistry {
     private const val GRAIN = 64.79891e-6
     private const val US_GALLON = 231 * INCH * INCH * INCH
     private const val IMPERIAL_GALLON = 4.54609e-3
+    private const val US_GALLON_LITRES = 3.785411784
+    private const val IMPERIAL_GALLON_LITRES = 4.54609
+    private const val MILE_KM = 1.609344
     private const val LBF = POUND * 9.80665
     private const val STANDARD_GRAVITY = 9.80665
     private const val CALORIE = 4.184
@@ -390,9 +393,9 @@ object UnitRegistry {
             units = listOf(
                 linear("kmpl", "Kilometre per litre", "km/L", 1.0),
                 affine("l100km", "Litres per 100 km", "L/100km", { 100.0 / it }, { 100.0 / it }, "Lower values are more efficient; zero consumption is undefined."),
-                linear("mpg_us", "Miles per US gallon", "mpg (US)", MILE / US_GALLON / 1000.0),
-                linear("mpg_uk", "Miles per Imperial gallon", "mpg (Imp)", MILE / IMPERIAL_GALLON / 1000.0),
-                linear("mipl", "Miles per litre", "mi/L", MILE / 1000.0)
+                linear("mpg_us", "Miles per US gallon", "mpg (US)", MILE_KM / US_GALLON_LITRES),
+                linear("mpg_uk", "Miles per Imperial gallon", "mpg (Imp)", MILE_KM / IMPERIAL_GALLON_LITRES),
+                linear("mipl", "Miles per litre", "mi/L", MILE_KM)
             )
         ),
         UnitCategory(

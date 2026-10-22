@@ -66,7 +66,7 @@ fun QuickSolveScreen(onOpenTool: (String) -> Unit, onOpenFavorites: () -> Unit) 
             title = stringResource(R.string.quicksolve_title),
             subtitle = stringResource(R.string.quicksolve_subtitle),
             actions = {
-                IconAction(Icons.Default.Star, stringResource(R.string.nav_favorites), onOpenFavorites)
+                IconAction(Icons.Default.Star, stringResource(R.string.nav_favorites), onClick = onOpenFavorites)
             }
         )
         LazyColumn(

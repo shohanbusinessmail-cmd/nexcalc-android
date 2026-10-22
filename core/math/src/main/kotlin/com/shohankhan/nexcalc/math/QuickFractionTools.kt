@@ -167,13 +167,14 @@ internal object QuickFractionTools {
         val a = ToolSupport.rational(values, "a")
         val b = ToolSupport.rational(values, "b")
         val lcd = a.denominator.divide(a.denominator.gcd(b.denominator)).multiply(b.denominator)
-        val first = Rational.of(a.numerator.multiply(lcd.divide(a.denominator)), lcd)
-        val second = Rational.of(b.numerator.multiply(lcd.divide(b.denominator)), lcd)
+        // The rewritten fractions keep the common denominator; they must not be reduced back.
+        val firstNumerator = a.numerator.multiply(lcd.divide(a.denominator))
+        val secondNumerator = b.numerator.multiply(lcd.divide(b.denominator))
         ToolSupport.result(
             "LCD = $lcd",
             "Least common denominator" to lcd.toString(),
-            "First fraction" to "${first.numerator}/${first.denominator}",
-            "Second fraction" to "${second.numerator}/${second.denominator}"
+            "First fraction" to "$firstNumerator/$lcd",
+            "Second fraction" to "$secondNumerator/$lcd"
         )
     }
 

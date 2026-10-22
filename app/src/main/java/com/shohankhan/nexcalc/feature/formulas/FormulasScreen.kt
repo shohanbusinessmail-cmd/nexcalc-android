@@ -59,7 +59,7 @@ fun FormulasScreen(onOpenFormula: (String) -> Unit, onOpenFavorites: () -> Unit)
                 FormulaRegistry.categories.size
             ),
             actions = {
-                IconAction(Icons.Default.Star, stringResource(R.string.nav_favorites), onOpenFavorites)
+                IconAction(Icons.Default.Star, stringResource(R.string.nav_favorites), onClick = onOpenFavorites)
             }
         )
         LazyColumn(

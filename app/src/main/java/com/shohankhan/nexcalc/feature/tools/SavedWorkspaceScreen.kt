@@ -60,7 +60,7 @@ fun SavedWorkspaceScreen(onBack: () -> Unit, onOpenFavorites: () -> Unit) {
             subtitle = "${state.items.size} items · ${state.favorites.size} favorites",
             onBack = onBack,
             actions = {
-                IconAction(Icons.Default.Star, stringResource(R.string.nav_favorites), onOpenFavorites)
+                IconAction(Icons.Default.Star, stringResource(R.string.nav_favorites), onClick = onOpenFavorites)
             }
         )
         LazyColumn(
@@ -74,7 +74,7 @@ fun SavedWorkspaceScreen(onBack: () -> Unit, onOpenFavorites: () -> Unit) {
                         FilterChip(
                             selected = state.filter == null,
                             onClick = { viewModel.setFilter(null) },
-                            label = { Text("All") }
+                            label = { Text(stringResource(R.string.saved_filter_all)) }
                         )
                     }
                     items(SavedKind.entries) { kind ->
@@ -148,9 +148,9 @@ private fun SavedCard(record: SavedRecord, onCopy: () -> Unit, onEditNote: () ->
                         color = MaterialTheme.colorScheme.primary
                     )
                 }
-                IconAction(Icons.Default.ContentCopy, stringResource(R.string.action_copy), onCopy)
-                IconAction(Icons.Default.Edit, stringResource(R.string.saved_notes), onEditNote)
-                IconAction(Icons.Default.Delete, stringResource(R.string.action_delete), onDelete)
+                IconAction(Icons.Default.ContentCopy, stringResource(R.string.action_copy), onClick = onCopy)
+                IconAction(Icons.Default.Edit, stringResource(R.string.saved_notes), onClick = onEditNote)
+                IconAction(Icons.Default.Delete, stringResource(R.string.action_delete), onClick = onDelete)
             }
             Text(
                 record.payload,

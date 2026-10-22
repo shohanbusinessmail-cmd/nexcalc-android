@@ -329,4 +329,9 @@
     <string name="cd_clear">Clear</string>
     <string name="error_position">At character %1$d</string>
     <string name="resistor_tolerance_unspecified">unspecified</string>
+    <string name="about_package">Package</string>
+    <string name="about_build_type">Build type</string>
+    <string name="about_email_owner">Email the owner</string>
+    <string name="about_built_with">NEXCALC is built with Kotlin, Jetpack Compose and the offline NEXCALC mathematical engine.</string>
+    <string name="saved_filter_all">All</string>
 </resources>

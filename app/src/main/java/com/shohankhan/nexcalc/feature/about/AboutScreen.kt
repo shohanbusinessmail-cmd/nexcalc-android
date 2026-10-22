@@ -43,8 +43,8 @@ fun AboutScreen(onBack: () -> Unit) {
                 )
                 LabeledValue(stringResource(R.string.about_owner), "Shohan Khan")
                 LabeledValue(stringResource(R.string.about_contact), "helloiamshohan@gmail.com")
-                LabeledValue("Package", BuildConfig.APPLICATION_ID)
-                LabeledValue("Build type", BuildConfig.BUILD_TYPE)
+                LabeledValue(stringResource(R.string.about_package), BuildConfig.APPLICATION_ID)
+                LabeledValue(stringResource(R.string.about_build_type), BuildConfig.BUILD_TYPE)
                 LabeledValue(stringResource(R.string.about_legal), BuildConfig.SIGNING_KIND)
                 Button(onClick = {
                     val intent = Intent(Intent.ACTION_SENDTO).apply {
@@ -52,7 +52,7 @@ fun AboutScreen(onBack: () -> Unit) {
                         putExtra(Intent.EXTRA_SUBJECT, "NEXCALC feedback")
                     }
                     runCatching { context.startActivity(intent) }
-                }) { Text("Email the owner") }
+                }) { Text(stringResource(R.string.about_email_owner)) }
             }
             SectionCard(title = stringResource(R.string.about_offline)) {
                 Text(stringResource(R.string.about_offline_body), style = MaterialTheme.typography.bodyMedium)
@@ -69,7 +69,7 @@ fun AboutScreen(onBack: () -> Unit) {
             SectionCard(title = stringResource(R.string.about_legal)) {
                 Text(stringResource(R.string.about_legal_body), style = MaterialTheme.typography.bodySmall)
                 Text(
-                    "NEXCALC is built with Kotlin, Jetpack Compose and the offline NEXCALC mathematical engine.",
+                    stringResource(R.string.about_built_with),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

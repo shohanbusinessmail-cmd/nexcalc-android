@@ -208,7 +208,10 @@ object Solvers {
             val leftPart = simpson(left, middle, fLeft, fLeftMiddle, fMiddle)
             val rightPart = simpson(middle, right, fMiddle, fRightMiddle, fRight)
             val delta = leftPart + rightPart - whole
-            if (depth >= MAX_INTEGRATION_DEPTH || abs(delta) < 15 * tolerance) {
+            // Each segment receives a share of the global tolerance proportional to its width so
+            // the accumulated estimate stays inside the requested bound.
+            val share = tolerance * (right - left) / (b - a)
+            if (depth >= MAX_INTEGRATION_DEPTH || abs(delta) < 15 * share) {
                 return Pair(leftPart + rightPart + delta / 15.0, abs(delta) / 15.0)
             }
             val leftResult = adaptive(left, middle, fLeft, fLeftMiddle, fMiddle, leftPart, depth + 1)

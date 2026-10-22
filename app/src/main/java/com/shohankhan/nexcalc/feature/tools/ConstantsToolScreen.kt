@@ -147,7 +147,7 @@ private fun ConstantRow(constant: PhysicalConstant, onCopy: () -> Unit) {
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
                     )
                 }
-                IconAction(Icons.Default.ContentCopy, stringResource(R.string.action_copy), onCopy)
+                IconAction(Icons.Default.ContentCopy, stringResource(R.string.action_copy), onClick = onCopy)
             }
             Text(
                 "${NumberFormatter.format(constant.value, NumberFormatOptions(decimalPrecision = 12, significantDigits = 12, useGrouping = false))} ${constant.unit}",

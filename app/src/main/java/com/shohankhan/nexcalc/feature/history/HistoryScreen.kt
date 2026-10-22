@@ -247,8 +247,8 @@ private fun HistoryRow(
                 )
             }
             if (!selectionMode) {
-                IconAction(Icons.Default.ContentCopy, stringResource(R.string.action_copy), onCopy)
-                IconAction(Icons.Default.Delete, stringResource(R.string.action_delete), onDelete)
+                IconAction(Icons.Default.ContentCopy, stringResource(R.string.action_copy), onClick = onCopy)
+                IconAction(Icons.Default.Delete, stringResource(R.string.action_delete), onClick = onDelete)
             }
         }
     }
