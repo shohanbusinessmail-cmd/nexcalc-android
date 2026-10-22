@@ -125,7 +125,8 @@ class NumberTheoryTest {
     @Test
     fun `highest power divisor`() {
         assertEquals(3, NumberTheory.highestPowerDivisor(BigInteger.valueOf(8), BigInteger.valueOf(2)))
-        assertEquals(2, NumberTheory.highestPowerDivisor(BigInteger.valueOf(72), BigInteger.valueOf(2)))
+        assertEquals(3, NumberTheory.highestPowerDivisor(BigInteger.valueOf(72), BigInteger.valueOf(2)))
+        assertEquals(4, NumberTheory.highestPowerDivisor(BigInteger.valueOf(48), BigInteger.valueOf(2)))
         assertEquals(MathErrorCode.DOMAIN, assertFailsWith<MathException> {
             NumberTheory.highestPowerDivisor(BigInteger.ZERO, BigInteger.valueOf(2))
         }.code)

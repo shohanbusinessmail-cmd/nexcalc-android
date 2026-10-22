@@ -242,7 +242,7 @@ internal object EngineFunctions {
         }
         "floor" -> Complex(floor(args[0].requireReal("floor")))
         "ceil" -> Complex(ceil(args[0].requireReal("ceil")))
-        "round" -> Complex(round(args[0].requireReal("round")))
+        "round" -> Complex(roundHalfAwayFromZero(args[0].requireReal("round")))
         "trunc" -> Complex(truncate(args[0].requireReal("trunc")))
         "frac" -> {
             val v = args[0].requireReal("frac")
@@ -386,6 +386,10 @@ internal object EngineFunctions {
     }
 
     private fun truncate(value: Double): Double = if (value >= 0) floor(value) else ceil(value)
+
+    /** Half away from zero, the rule stated in the mathematical contract (round(-2.5) = -3). */
+    private fun roundHalfAwayFromZero(value: Double): Double =
+        BigDecimal(value).setScale(0, java.math.RoundingMode.HALF_UP).toDouble()
 
     private fun checkOverflow(value: Complex): Complex {
         if (!value.isFinite) throw MathException.overflow("The result is too large to represent.")
