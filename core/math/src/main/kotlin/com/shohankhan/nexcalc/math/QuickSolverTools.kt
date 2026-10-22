@@ -277,7 +277,104 @@ internal object QuickSolverTools {
         throw MathException.invalid("'$text' is not a valid date. Use the format yyyy-mm-dd.")
     }
 
+    val profitLoss = tool(
+        "profit-loss", "Profit and loss",
+        "Compares cost price with selling price and reports the gain or loss both absolutely and as a percentage of cost.",
+        listOf(input("cost", "Cost price"), input("selling", "Selling price")),
+        listOf(
+            ToolTest(mapOf("cost" to "100", "selling" to "120"), mapOf("Type" to "Profit", "Amount" to "20", "Percent" to "20")),
+            ToolTest(mapOf("cost" to "250", "selling" to "200"), mapOf("Type" to "Loss", "Amount" to "50", "Percent" to "20")),
+            ToolTest(mapOf("cost" to "75", "selling" to "75"), mapOf("Type" to "Break-even", "Amount" to "0", "Percent" to "0"))
+        )
+    ) { values ->
+        val cost = ToolSupport.double(values, "cost")
+        val selling = ToolSupport.double(values, "selling")
+        if (cost <= 0) throw MathException.invalid("The cost price must be greater than zero.")
+        val difference = selling - cost
+        val type = when {
+            difference > 0 -> "Profit"
+            difference < 0 -> "Loss"
+            else -> "Break-even"
+        }
+        val percent = kotlin.math.abs(difference) / cost * 100.0
+        ToolSupport.result(
+            "$type ${ToolSupport.fmt(kotlin.math.abs(difference))} (${ToolSupport.fmt(percent)}%)",
+            "Type" to type,
+            "Amount" to ToolSupport.fmt(kotlin.math.abs(difference)),
+            "Percent" to ToolSupport.fmt(percent),
+            steps = listOf("Percentage = |selling − cost| ÷ cost × 100")
+        )
+    }
+
+    val simpleInterest = tool(
+        "simple-interest", "Simple interest",
+        "Interest computed only on the principal: I = P × r × t ÷ 100.",
+        listOf(input("principal", "Principal"), input("rate", "Annual rate (%)"), input("years", "Time (years)")),
+        listOf(
+            ToolTest(mapOf("principal" to "1000", "rate" to "5", "years" to "2"), mapOf("Interest" to "100", "Amount" to "1100"))
+        )
+    ) { values ->
+        val principal = ToolSupport.double(values, "principal")
+        val rate = ToolSupport.double(values, "rate")
+        val years = ToolSupport.double(values, "years")
+        if (principal <= 0) throw MathException.invalid("The principal must be greater than zero.")
+        if (rate < 0) throw MathException.invalid("The rate cannot be negative.")
+        if (years < 0) throw MathException.invalid("The time cannot be negative.")
+        val interest = principal * rate * years / 100.0
+        ToolSupport.result(
+            "Interest ${ToolSupport.fmt(interest)}",
+            "Interest" to ToolSupport.fmt(interest),
+            "Amount" to ToolSupport.fmt(principal + interest),
+            steps = listOf("I = ${ToolSupport.fmt(principal)} × ${ToolSupport.fmt(rate)} × ${ToolSupport.fmt(years)} ÷ 100")
+        )
+    }
+
+    val compoundInterest = tool(
+        "compound-interest", "Compound interest (annual)",
+        "Amount with interest compounded once per year: A = P(1 + r/100)^t.",
+        listOf(input("principal", "Principal"), input("rate", "Annual rate (%)"), input("years", "Time (years)")),
+        listOf(
+            ToolTest(mapOf("principal" to "1000", "rate" to "10", "years" to "2"), mapOf("Amount" to "1210", "Interest" to "210"))
+        )
+    ) { values ->
+        val principal = ToolSupport.double(values, "principal")
+        val rate = ToolSupport.double(values, "rate")
+        val years = ToolSupport.double(values, "years")
+        if (principal <= 0) throw MathException.invalid("The principal must be greater than zero.")
+        if (rate < 0) throw MathException.invalid("The rate cannot be negative.")
+        if (years < 0) throw MathException.invalid("The time cannot be negative.")
+        val amount = principal * Math.pow(1.0 + rate / 100.0, years)
+        if (!amount.isFinite()) throw MathException.overflow("The amount exceeded the supported range.")
+        ToolSupport.result(
+            "Amount ${ToolSupport.fmt(amount)}",
+            "Amount" to ToolSupport.fmt(amount),
+            "Interest" to ToolSupport.fmt(amount - principal),
+            steps = listOf("A = ${ToolSupport.fmt(principal)} × (1 + ${ToolSupport.fmt(rate)} ÷ 100)^${ToolSupport.fmt(years)}"),
+            warnings = listOf("Compounding frequency is annual; NEXCALC does not assume a bank product.")
+        )
+    }
+
+    val averageSpeed = tool(
+        "average-speed", "Average speed",
+        "Average speed from total distance and total time, not the mean of two speeds.",
+        listOf(input("distance", "Total distance"), input("time", "Total time")),
+        listOf(ToolTest(mapOf("distance" to "120", "time" to "2"), mapOf("Average speed" to "60")))
+    ) { values ->
+        val distance = ToolSupport.double(values, "distance")
+        val time = ToolSupport.double(values, "time")
+        if (time <= 0) throw MathException.invalid("The total time must be greater than zero.")
+        if (distance < 0) throw MathException.invalid("The distance cannot be negative.")
+        val speed = distance / time
+        ToolSupport.result(
+            "Average speed ${ToolSupport.fmt(speed)}",
+            "Average speed" to ToolSupport.fmt(speed),
+            steps = listOf("Average speed = total distance ÷ total time"),
+            warnings = listOf("Average speed is total distance over total time; it is not the arithmetic mean of separate speeds.")
+        )
+    }
+
     val all: List<QuickTool> = listOf(
-        average, travel, work, ageRatio, alligation, simultaneous, dateDifference, dateAdd
+        average, travel, work, ageRatio, alligation, simultaneous, dateDifference, dateAdd,
+        profitLoss, simpleInterest, compoundInterest, averageSpeed
     )
 }
