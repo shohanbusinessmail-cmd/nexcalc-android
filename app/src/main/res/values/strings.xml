@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NEXCALC</string>
+    <string name="app_tagline">Advanced Offline Calculator &amp; Problem Solver</string>
+
+    <!-- Navigation -->
+    <string name="nav_standard">Standard</string>
+    <string name="nav_scientific">Scientific</string>
+    <string name="nav_formulas">Formulas</string>
+    <string name="nav_more">More</string>
+    <string name="nav_quicksolve">Quick Solve</string>
+    <string name="nav_converters">Converters</string>
+    <string name="nav_tools">Tools</string>
+    <string name="nav_history">History</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_about">About</string>
+    <string name="nav_back">Back</string>
+
+    <!-- Common actions -->
+    <string name="action_copy">Copy</string>
+    <string name="action_copied">Copied to clipboard</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_clear_all">Clear all</string>
+    <string name="memory_need_result">Calculate a result first</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_delete_selected">Delete selected (%1$d)</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_reset">Reset</string>
+    <string name="action_swap">Swap</string>
+    <string name="action_search">Search</string>
+    <string name="action_close">Close</string>
+    <string name="action_calculate">Calculate</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_export">Export</string>
+    <string name="action_import">Import</string>
+    <string name="action_add">Add</string>
+    <string name="action_open">Open</string>
+    <string name="action_use">Use</string>
+    <string name="action_remove">Remove</string>
+
+    <!-- Calculator -->
+    <string name="label_expression">Expression</string>
+    <string name="label_result">Result</string>
+    <string name="label_memory">Memory</string>
+    <string name="label_error">Error</string>
+    <string name="label_approximate">≈ approximate</string>
+    <string name="label_exact">exact</string>
+    <string name="action_backspace">Backspace</string>
+    <string name="action_clear_entry">Clear entry</string>
+    <string name="memory_clear">MC</string>
+    <string name="memory_recall">MR</string>
+    <string name="memory_add">M+</string>
+    <string name="memory_subtract">M−</string>
+    <string name="memory_store">MS</string>
+    <string name="memory_empty">Memory is empty</string>
+    <string name="memory_indicator">M</string>
+    <string name="standard_title">Standard</string>
+    <string name="standard_subtitle">Everyday arithmetic with memory and history</string>
+    <string name="standard_hint">Type an expression or use the keypad</string>
+    <string name="scientific_title">Scientific</string>
+    <string name="scientific_subtitle">Trigonometry, logarithms, powers and constants</string>
+    <string name="scientific_function_browser">Function browser</string>
+    <string name="scientific_search_functions">Search functions</string>
+    <string name="state_empty_expression">Enter an expression to evaluate</string>
+    <string name="state_empty_history">No calculations yet</string>
+    <string name="state_no_results">No results found</string>
+    <string name="state_nothing_saved">Nothing saved yet</string>
+    <string name="state_no_favorites">No favorites yet</string>
+    <string name="error_generic">The calculation could not be completed</string>
+    <string name="angle_mode_degrees">Degrees</string>
+    <string name="angle_mode_radians">Radians</string>
+    <string name="angle_mode_gradians">Gradians</string>
+    <string name="insert_ans">Ans</string>
+
+    <!-- Formulas -->
+    <string name="formulas_title">Formulas</string>
+    <string name="formulas_subtitle">%1$d verified formulas in %2$d categories</string>
+    <string name="formulas_search_hint">Search formulas</string>
+    <string name="formula_inputs">Inputs</string>
+    <string name="formula_result">Result</string>
+    <string name="formula_steps">Working steps</string>
+    <string name="formula_assumptions">Assumptions</string>
+    <string name="formula_notation">Formula</string>
+    <string name="formula_reference">Reference</string>
+    <string name="formula_precision">Precision</string>
+    <string name="formula_related">Related formulas</string>
+    <string name="formula_all_categories">All formulas</string>
+    <string name="formula_not_found">This formula is not available</string>
+    <string name="formula_saved">Saved to your workspace</string>
+    <string name="action_save_expression">Save to workspace</string>
+
+    <!-- Quick Solve -->
+    <string name="quicksolve_title">Quick Solve</string>
+    <string name="quicksolve_subtitle">Number theory, fractions, mental maths, sequences and solvers</string>
+    <string name="tool_inputs">Inputs</string>
+    <string name="tool_result">Result</string>
+    <string name="tool_steps">Method</string>
+    <string name="tool_warnings">Notes</string>
+    <string name="tool_not_found">This tool is not available</string>
+
+    <!-- Converters -->
+    <string name="converters_title">Converters</string>
+    <string name="converters_subtitle">%1$d offline unit categories — no currency rates or network</string>
+    <string name="converter_from">From</string>
+    <string name="converter_to">To</string>
+    <string name="converter_value">Value</string>
+    <string name="converter_result">Converted value</string>
+    <string name="converter_category">Category</string>
+    <string name="converter_description">About this category</string>
+    <string name="converter_precision">Precision</string>
+    <string name="converter_unit_notes">Unit notes</string>
+
+    <!-- Tools -->
+    <string name="tools_title">Tools</string>
+    <string name="tools_subtitle">Professional workspaces that stay on your device</string>
+    <string name="tool_matrix">Matrix &amp; vector workspace</string>
+    <string name="tool_matrix_desc">Add, multiply, transpose, invert and solve linear systems up to 12 × 12.</string>
+    <string name="tool_statistics">Statistics workspace</string>
+    <string name="tool_statistics_desc">Datasets, descriptive statistics, frequency tables and regression.</string>
+    <string name="tool_equations">Equation workspace</string>
+    <string name="tool_equations_desc">Linear systems, polynomial roots and verified numerical methods.</string>
+    <string name="tool_bases">Number systems &amp; bitwise</string>
+    <string name="tool_bases_desc">Binary, octal, decimal, hexadecimal, shifts and two\'s complement.</string>
+    <string name="tool_constants">Constants &amp; identities</string>
+    <string name="tool_constants_desc">Physical constants and mathematical identities, stored offline.</string>
+    <string name="tool_resistor">Resistor colour code</string>
+    <string name="tool_resistor_desc">Decode 4, 5 and 6 band resistors with tolerance and temperature coefficient.</string>
+    <string name="tool_saved">Saved workspace</string>
+    <string name="tool_saved_desc">Expressions, datasets and equation sets you saved.</string>
+    <string name="tool_notebook">Calculation notes</string>
+    <string name="tool_notebook_desc">Notes attached to your saved calculations.</string>
+
+    <string name="matrix_matrix_a">Matrix A</string>
+    <string name="matrix_matrix_b">Matrix B</string>
+    <string name="matrix_rows">Rows</string>
+    <string name="matrix_columns">Columns</string>
+    <string name="matrix_edit_hint">Use one line per row and separate values with spaces or commas.</string>
+    <string name="matrix_transpose">Transpose A</string>
+    <string name="matrix_determinant">Determinant A</string>
+    <string name="matrix_inverse">Inverse A</string>
+    <string name="matrix_rank">Rank A</string>
+    <string name="matrix_trace">Trace A</string>
+    <string name="matrix_add">A + B</string>
+    <string name="matrix_subtract">A − B</string>
+    <string name="matrix_multiply">A × B</string>
+    <string name="matrix_solve">Solve A·x = b</string>
+    <string name="matrix_result">Result</string>
+    <string name="matrix_vector_b">Right-hand side b</string>
+
+    <string name="stats_dataset">Dataset</string>
+    <string name="stats_dataset_hint">Numbers separated by commas or spaces</string>
+    <string name="stats_paired">Paired data for regression</string>
+    <string name="stats_x_values">x values</string>
+    <string name="stats_y_values">y values</string>
+    <string name="stats_summary">Summary</string>
+    <string name="stats_frequency">Frequency table</string>
+    <string name="stats_regression">Linear regression</string>
+    <string name="stats_save_name">Name this dataset</string>
+    <string name="stats_saved">Dataset saved</string>
+
+    <string name="equations_system">Linear system</string>
+    <string name="equations_matrix_hint">Enter the coefficient matrix and the constant vector.</string>
+    <string name="equations_polynomial">Polynomial roots</string>
+    <string name="equations_coefficients">Coefficients (highest degree first)</string>
+    <string name="equations_numeric">Numeric root finder</string>
+    <string name="equations_function">f(x)</string>
+    <string name="equations_method">Method</string>
+    <string name="equations_tolerance">Tolerance</string>
+    <string name="equations_lower">Lower bound</string>
+    <string name="equations_upper">Upper bound</string>
+    <string name="equations_root">Root</string>
+    <string name="equations_iterations">Iterations</string>
+    <string name="equations_residual">Residual</string>
+    <string name="equations_converged">Converged</string>
+    <string name="equations_not_converged">Not converged</string>
+    <string name="equations_save_set">Save equation set</string>
+
+    <string name="bases_input">Value</string>
+    <string name="bases_base">Input base</string>
+    <string name="bases_decimal">Decimal (signed)</string>
+    <string name="bases_unsigned">Decimal (unsigned)</string>
+    <string name="bases_binary">Binary</string>
+    <string name="bases_octal">Octal</string>
+    <string name="bases_hex">Hexadecimal</string>
+    <string name="bases_operands">Bitwise operands</string>
+    <string name="bases_operand_a">Operand A</string>
+    <string name="bases_operand_b">Operand B</string>
+    <string name="bases_operation">Operation</string>
+    <string name="bases_shift">Shift amount</string>
+
+    <string name="constants_physical">Physical constants</string>
+    <string name="constants_identities">Mathematical identities</string>
+    <string name="constants_exact">Exact</string>
+    <string name="constants_measured">Measured</string>
+    <string name="constants_source">Source</string>
+
+    <string name="resistor_bands">Bands</string>
+    <string name="resistor_four">4 bands</string>
+    <string name="resistor_five">5 bands</string>
+    <string name="resistor_six">6 bands</string>
+    <string name="resistor_value">Resistance</string>
+    <string name="resistor_tolerance">Tolerance</string>
+    <string name="resistor_range">Range</string>
+    <string name="resistor_tempco">Temperature coefficient</string>
+    <string name="resistor_digit">Digit %1$d</string>
+    <string name="resistor_multiplier">Multiplier</string>
+    <string name="resistor_select">Select a colour</string>
+
+    <string name="saved_title">Saved</string>
+    <string name="saved_notes">Note</string>
+    <string name="saved_add_note">Add a note</string>
+    <string name="saved_kind_expression">Expression</string>
+    <string name="saved_kind_formula">Formula</string>
+    <string name="saved_kind_dataset">Dataset</string>
+    <string name="saved_kind_equation_set">Equation set</string>
+
+    <!-- History -->
+    <string name="history_title">History</string>
+    <string name="history_subtitle">Stored only on this device</string>
+    <string name="history_search_hint">Search history</string>
+    <string name="history_all_sources">All sources</string>
+    <string name="history_retention_notice">Records older than %1$s are removed automatically when you open the app or when Android runs scheduled maintenance.</string>
+    <string name="history_retention_never">Automatic deletion is turned off. Records stay until you delete them.</string>
+    <string name="history_clear_title">Clear all history?</string>
+    <string name="history_clear_body">This removes every stored calculation from this device.</string>
+    <string name="history_delete_title">Delete this calculation?</string>
+    <string name="history_deleted">Calculation deleted</string>
+    <string name="history_cleared">History cleared</string>
+    <string name="history_today">Today</string>
+    <string name="history_yesterday">Yesterday</string>
+
+    <!-- Search -->
+    <string name="search_title">Search</string>
+    <string name="search_hint">Functions, formulas, tools, units, history</string>
+    <string name="search_no_results">No matches for “%1$s”</string>
+    <string name="search_prompt">Start typing to search everything offline</string>
+    <string name="search_group_functions">Functions</string>
+    <string name="search_group_formulas">Formulas</string>
+    <string name="search_group_tools">Quick Solve tools</string>
+    <string name="search_group_units">Units</string>
+    <string name="search_group_constants">Constants</string>
+    <string name="search_group_history">History</string>
+    <string name="search_group_saved">Saved items</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_subtitle">Formulas, units and tools you marked</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_dynamic_color">Dynamic colour</string>
+    <string name="settings_dynamic_color_hint">Uses your wallpaper palette on Android 12 and later.</string>
+    <string name="settings_accent">Accent</string>
+    <string name="settings_accent_blue">Blue</string>
+    <string name="settings_accent_teal">Teal</string>
+    <string name="settings_accent_violet">Violet</string>
+    <string name="settings_numbers">Number formatting</string>
+    <string name="settings_decimal_precision">Decimal places</string>
+    <string name="settings_significant_digits">Significant digits (scientific)</string>
+    <string name="settings_grouping">Digit grouping</string>
+    <string name="settings_decimal_separator">Decimal separator</string>
+    <string name="settings_grouping_separator">Grouping separator</string>
+    <string name="settings_trailing_zeros">Show trailing zeros</string>
+    <string name="settings_calculator">Calculator</string>
+    <string name="settings_angle_mode">Angle mode</string>
+    <string name="settings_haptics">Haptic feedback</string>
+    <string name="settings_animations">Animations</string>
+    <string name="settings_animations_hint">System reduced-motion settings are always respected.</string>
+    <string name="settings_history">History</string>
+    <string name="settings_retention">Retention</string>
+    <string name="settings_retention_1">1 day</string>
+    <string name="settings_retention_7">7 days</string>
+    <string name="settings_retention_30">30 days</string>
+    <string name="settings_retention_90">90 days</string>
+    <string name="settings_retention_never">Never</string>
+    <string name="settings_cleanup_now">Remove expired records now</string>
+    <string name="settings_cleanup_done">Removed %1$d expired record(s)</string>
+    <string name="settings_data">Data</string>
+    <string name="settings_export">Export data</string>
+    <string name="settings_import">Import data</string>
+    <string name="settings_export_success">Data exported to the selected file</string>
+    <string name="settings_export_failed">Export failed</string>
+    <string name="settings_import_success">Imported %1$d records</string>
+    <string name="settings_import_failed">The selected file could not be read</string>
+    <string name="settings_delete_data">Delete all app data</string>
+    <string name="settings_delete_data_title">Delete all data?</string>
+    <string name="settings_delete_data_body">History, saved expressions, datasets, favorites and preferences will be erased from this device. This cannot be undone.</string>
+    <string name="settings_deleted">All local data deleted</string>
+    <string name="settings_backup_note">Backup to Google is disabled. Use Export to move your data deliberately.</string>
+
+    <!-- About -->
+    <string name="about_title">About</string>
+    <string name="about_version">Version %1$s (build %2$d)</string>
+    <string name="about_owner">Owner</string>
+    <string name="about_contact">Contact</string>
+    <string name="about_offline">Fully offline</string>
+    <string name="about_offline_body">NEXCALC has no INTERNET permission, no accounts, no advertising and no analytics. Every calculation runs on your device.</string>
+    <string name="about_storage">Your data stays here</string>
+    <string name="about_storage_body">History, favorites and saved work live in a private database on this device. Android cloud backup is disabled. Uninstalling the app removes this data.</string>
+    <string name="about_licenses">Open-source notices</string>
+    <string name="about_licenses_body">Kotlin (Apache 2.0), AndroidX and Jetpack Compose (Apache 2.0), Room (Apache 2.0), DataStore (Apache 2.0), WorkManager (Apache 2.0), kotlinx.serialization (Apache 2.0) and the Material Symbols icon set (Apache 2.0). No third-party formula datasets, proprietary calculator code or paid SDKs are used.</string>
+    <string name="about_privacy">Privacy</string>
+    <string name="about_privacy_body">No network requests. No telemetry. Calculations are never uploaded. Export is an explicit action you take with the system file picker.</string>
+    <string name="about_legal">Legal</string>
+    <string name="about_legal_body">NEXCALC is an independent application owned by Shohan Khan. Formulas are provided for educational and professional estimation; verify critical results independently.</string>
+    <string name="about_developer">Built with Jetpack Compose, Kotlin and the NEXCALC mathematical engine.</string>
+
+    <!-- More -->
+    <string name="more_title">More</string>
+    <string name="more_subtitle">All NEXCALC destinations and personal tools</string>
+    <string name="more_problem_solving">Problem solving</string>
+    <string name="more_personal">Personal</string>
+
+    <string name="snackbar_copied">Copied</string>
+    <string name="snackbar_generic_error">Something went wrong</string>
+    <string name="cd_more_actions">More actions</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_history">History</string>
+    <string name="cd_favorite">Toggle favorite</string>
+    <string name="cd_clear">Clear</string>
+</resources>

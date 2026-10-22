@@ -3,21 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!--
-        NEXCALC is deliberately offline: no INTERNET permission is declared anywhere in the
-        application or its dependencies. Everything the app does runs on the device.
+        NEXCALC is an offline application. No INTERNET permission is requested, no network
+        security configuration is needed and no dependency declares a network transport.
     -->
 
     <application
         android:name=".NexCalcApplication"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="false"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NexCalc"
-        tools:targetApi="31">
+        tools:targetApi="33">
 
         <activity
             android:name=".MainActivity"
@@ -30,5 +30,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

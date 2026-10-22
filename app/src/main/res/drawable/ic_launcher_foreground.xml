@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    NEXCALC mark: a bold "N" (the app initial) drawn with round strokes inside the adaptive-icon
-    safe zone, plus a teal accent dot that reads as a decimal point.
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
-        android:pathData="M38,70 L38,38 L70,70 L70,38"
+        android:pathData="M38,68 L38,40 L70,68 L70,40"
         android:strokeColor="#FFFFFFFF"
-        android:strokeWidth="8"
+        android:strokeWidth="7"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:fillColor="@android:color/transparent" />
+        android:fillColor="#00000000" />
     <path
-        android:pathData="M74,72 m-3.5,0 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"
-        android:fillColor="#FF2DD4BF" />
+        android:pathData="M76,70 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"
+        android:fillColor="#2DD4BF" />
 </vector>

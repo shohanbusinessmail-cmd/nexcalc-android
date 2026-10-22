@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Backup policy: NEXCALC keeps calculation history on the device only.
-    android:allowBackup="false" disables cloud backup and device-to-device transfer of app data.
-    Users can move their data deliberately with the in-app export/import feature.
+    NEXCALC keeps everything on the device. Cloud backup and device-to-device transfer are
+    disabled; the app offers an explicit export/import path instead.
 -->
 <data-extraction-rules>
     <cloud-backup>

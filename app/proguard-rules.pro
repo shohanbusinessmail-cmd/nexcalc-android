@@ -1,15 +1,17 @@
-# NEXCALC release rules.
-#
-# The engine and data layer are plain Kotlin/Room code; R8's default Android rules handle them.
-# Room's generated implementations are kept by the Room artifact consumer rules.
+# NEXCALC release configuration.
+# Kotlin, Compose, Room, Navigation and kotlinx.serialization ship consumer rules; these entries
+# cover the app's own data classes used by JSON export/import and by navigation routes.
 -keepattributes *Annotation*, InnerClasses
 -dontwarn org.jetbrains.annotations.**
 
-# kotlinx.serialization: keep serializers for exported/imported data.
--keepattributes RuntimeVisibleAnnotations,AnnotationDefault
--keepclassmembers @kotlinx.serialization.Serializable class ** {
+-keepclassmembers @kotlinx.serialization.Serializable class com.shohankhan.nexcalc.** {
     *** Companion;
+    *** serializer(...);
 }
--keepclasseswithmembers class ** {
+-keepclasseswithmembers class com.shohankhan.nexcalc.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
+
+# Room generated implementations are referenced directly; keep entity accessors for reflection-free
+# use by the generated code.
+-keep class com.shohankhan.nexcalc.core.data.local.** { *; }

@@ -1,16 +1,27 @@
-*.iml
-.gradle
-/local.properties
-/.idea
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
 local.properties
-*.jks
-*.keystore
-*keystore.properties
-/app/build
-/core/*/build
-.kotlin
+.kotlin/
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+captures/
+.externalNativeBuild/
+.cxx/
+app/release/
+app/debug/
+app/schemas/
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+*.hprof
+
+# Logs and reports
+*.log

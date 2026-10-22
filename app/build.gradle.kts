@@ -9,16 +9,17 @@ plugins {
 }
 
 /**
- * Release signing is supplied entirely through environment variables by CI so that no keystore or
- * password is ever committed. When the variables are absent the release build is unsigned, and the
- * pipeline reports that honestly instead of pretending it is signed.
+ * Release signing comes only from the environment. Nothing secret is committed: if the four
+ * NEXCALC_* variables are absent the release build is signed with the CI debug keystore so the APK
+ * is installable for review, and the app itself reports which signing kind was used.
  */
 val keystorePath: String? = System.getenv("NEXCALC_KEYSTORE_PATH")
 val keystorePassword: String? = System.getenv("NEXCALC_KEYSTORE_PASSWORD")
 val keyAliasValue: String? = System.getenv("NEXCALC_KEY_ALIAS")
 val keyPasswordValue: String? = System.getenv("NEXCALC_KEY_PASSWORD")
-val hasReleaseSigning = keystorePath != null && keystorePassword != null &&
+val hasReleaseSigning: Boolean = keystorePath != null && keystorePassword != null &&
     keyAliasValue != null && keyPasswordValue != null && file(keystorePath).exists()
+val signingKind: String = if (hasReleaseSigning) "release-key" else "debug-key"
 
 android {
     namespace = "com.shohankhan.nexcalc"
@@ -31,13 +32,12 @@ android {
         versionCode = 1
         versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables { useSupportLibrary = true }
-        resourceConfigurations += listOf("en")
+        vectorDrawables.useSupportLibrary = true
     }
 
     if (hasReleaseSigning) {
         signingConfigs {
-            create("release") {
+            create("nexcalcRelease") {
                 storeFile = file(keystorePath!!)
                 storePassword = keystorePassword
                 keyAlias = keyAliasValue
@@ -51,12 +51,13 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            if (hasReleaseSigning) {
-                signingConfig = signingConfigs.getByName("release")
-            }
+            signingConfig = if (hasReleaseSigning) signingConfigs.getByName("nexcalcRelease") else signingConfigs.getByName("debug")
+            buildConfigField("String", "SIGNING_KIND", "\"$signingKind\"")
         }
         debug {
             isMinifyEnabled = false
+            versionNameSuffix = "-debug"
+            buildConfigField("String", "SIGNING_KIND", "\"debug-key\"")
         }
     }
 
@@ -72,19 +73,17 @@ android {
 
     testOptions {
         unitTests.isIncludeAndroidResources = true
-        unitTests.isReturnDefaultValues = true
     }
 
     lint {
-        warningsAsErrors = false
         abortOnError = true
-        checkReleaseBuilds = true
+        checkDependencies = true
+        warningsAsErrors = false
+        disable += setOf("GradleDependency", "AndroidGradlePluginVersion", "NewerVersionAvailable", "UnusedResources")
     }
 
     packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+        resources.excludes += setOf("/META-INF/{AL2.0,LGPL2.1}", "/META-INF/LICENSE*", "/META-INF/NOTICE*")
     }
 }
 
@@ -92,11 +91,8 @@ kotlin {
     jvmToolchain(17)
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_17)
+        allWarningsAsErrors.set(false)
     }
-}
-
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 dependencies {
